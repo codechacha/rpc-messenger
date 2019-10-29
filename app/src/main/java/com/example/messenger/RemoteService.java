@@ -7,7 +7,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ public class RemoteService extends Service{
     final Messenger mMessenger = new Messenger( new CallbackHandler());
     int mValue = 0;
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return mMessenger.getBinder();
@@ -49,7 +47,6 @@ public class RemoteService extends Service{
     public void onDestroy(){
         super.onDestroy();
     }
-
 
     private class CallbackHandler  extends Handler {
         @Override

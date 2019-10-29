@@ -9,11 +9,11 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                     // request 'add value' to service
                     Message msg = Message.obtain(null, RemoteService.MSG_ADD_VALUE);
                     msg.arg1 = 10;
-                    msg.replyTo = mClientCallback;
                     try {
                         mServiceCallback.send(msg);
                     } catch (RemoteException e) {
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), RemoteService.class);
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
-
 
     private ServiceConnection mConnection = new ServiceConnection()
     {
